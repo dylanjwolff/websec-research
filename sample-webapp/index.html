@@ -8,6 +8,10 @@
 <p id="demo"></p>
 
 <script>
+console.log("accessing cookie");
+document.cookie;
+console.log("done accessing cookie");
+
 function myFunction() {
     document.cookie = "password=foo";
     var person = prompt("Please enter your name", "Harry Potter");

@@ -1,0 +1,8 @@
+1. Use content script to alter sensitive DOM values
+2. Use prebuilt sandboxing to render page safely (ADSafe within an iframe maybe?)
+    a) iframe.child = new doc, with child set to document.getChild(). Document.setAllChild undefined, Document.setChild[1] = iframe
+    b) issue: if cookie is set by the original page, this doesn't help
+3. Inject script into the DOM and override calls
+4. Modify JS Execution Engine to add a compilation step with Caja etc.
+
+For network requests,,, chrome.webRequest API

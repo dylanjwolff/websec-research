@@ -12,5 +12,13 @@
   "permissions": [
     "activeTab",
     "storage"
-  ]
+  ],
+
+    "content_scripts": [
+        {
+            "js": ["inject.js"],
+            "matches": ["<all_urls>"],
+            "run_at": "document_start"
+        }
+    ]
 }
