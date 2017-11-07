@@ -5,4 +5,7 @@
 3. Inject script into the DOM and override calls
 4. Modify JS Execution Engine to add a compilation step with Caja etc.
 
-For network requests,,, chrome.webRequest API
+For network requests... chrome.webRequest API
+
+^^^ 11/6 Use this to instrument, then classification problem to allow/not allow request...
+    See Intrustion detection and Bookmarked Survey Paper on Sequence Classification for ideas on this
