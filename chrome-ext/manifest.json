@@ -9,8 +9,15 @@
   },
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
   ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
 
     "content_scripts": [
         {
