@@ -109,9 +109,13 @@ var filter = { urls: ["<all_urls>"] };
 var opt_extraInfoSpec = [];
 var callback = function callback(details) {
     // Obviously not great to hardcode the ip and port here, but dockerizing a browser that loads an extension is nontrivial
-    _superagent2.default.post("http://0.0.0.0:32770").send({ method: details.method, url: details.url, timestamp: details.timeStamp }).catch(function (reason) {
-        return alert("request to server failed with reason: " + reason);
-    });
+    var mongoServerLocation = "http://0.0.0.0:9000/";
+    // Filter out requests that have the header indicating they came from the script our extension injected
+    if (details.url !== mongoServerLocation) {
+        _superagent2.default.post(+mongoServerLocation).send({ method: details.method, url: details.url, timestamp: details.timeStamp }).catch(function (reason) {
+            return alert("request to server failed with reason: " + reason);
+        });
+    }
 };
 
 chrome.webRequest.onBeforeRequest.addListener(callback, filter, opt_extraInfoSpec);

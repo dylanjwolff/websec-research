@@ -1,6 +1,6 @@
 import request from "superagent";
 
-const targetHostAndPort = "0.0.0.0:32770";
+const targetHostAndPort = "0.0.0.0:9000";
 
 Object.defineProperty(document, "cookie", {
     get: function() {
@@ -18,6 +18,7 @@ function postAccess(domElement, value, accessMethod){
 // Obviously not great to hardcode the ip and port here, but dockerizing a browser that loads an extension is nontrivial
     const timestamp = new Date().getTime() / 1000;
     request.post("http://" + targetHostAndPort)
+        .set("SOURCE_OF_REQ", "EXTENSION")
         .send({ domElement: domElement, value: value, accessMethod: accessMethod, timestamp: timestamp})
-        .catch( (reason) => alert("request to server failed with reason: " + reason) );
+        .catch( (reason) => console.log(reason) );
 }

@@ -105,7 +105,7 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var targetHostAndPort = "0.0.0.0:32770";
+var targetHostAndPort = "0.0.0.0:9000";
 
 Object.defineProperty(document, "cookie", {
     get: function get() {
@@ -122,8 +122,8 @@ Object.defineProperty(document, "cookie", {
 function postAccess(domElement, value, accessMethod) {
     // Obviously not great to hardcode the ip and port here, but dockerizing a browser that loads an extension is nontrivial
     var timestamp = new Date().getTime() / 1000;
-    _superagent2.default.post("http://" + targetHostAndPort).send({ domElement: domElement, value: value, accessMethod: accessMethod, timestamp: timestamp }).catch(function (reason) {
-        return alert("request to server failed with reason: " + reason);
+    _superagent2.default.post("http://" + targetHostAndPort).set("SOURCE_OF_REQ", "EXTENSION").send({ domElement: domElement, value: value, accessMethod: accessMethod, timestamp: timestamp }).catch(function (reason) {
+        return console.log(reason);
     });
 }
 
